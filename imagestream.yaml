@@ -1,0 +1,15 @@
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  annotations:
+    openshift.io/display-name: nexus3
+  generation: 2
+  name: nexus3
+spec:
+  dockerImageRepository: 'registry.felix.com/devops/nexus3'
+  tags:
+    - from:
+        kind: DockerImage
+        name: 'registry.felix.com/devops/nexus3:latest'
+      generation: 2
+      name: 'latest'

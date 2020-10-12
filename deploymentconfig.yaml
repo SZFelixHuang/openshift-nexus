@@ -1,0 +1,47 @@
+kind: DeploymentConfig
+apiVersion: v1
+metadata:
+  name: nexus3
+  labels:
+    repository: nexus3
+spec:
+  template: 
+    metadata:
+      labels:
+        name: nexus3
+    spec:
+      containers:
+        - name: nexus3
+          image: nexus3
+          volumeMounts:
+            - mountPath: /nexus-data
+              name: nexus-data
+          ports:
+            - containerPort: 8081
+              protocol: TCP
+            - containerPort: 8082
+              protocol: TCP
+            - containerPort: 8083
+              protocol: TCP
+            - containerPort: 8084
+              protocol: TCP
+      volumes:
+        - name: nexus-data
+          persistentVolumeClaim:
+            claimName: nexus
+  replicas: 1
+  triggers:
+    - type: ConfigChange 
+    - type: ImageChange
+      imageChangeParams:
+        automatic: true
+        containerNames:
+          - nexus3
+        from:
+          kind: ImageStreamTag
+          name: nexus3:latest
+  strategy: 
+    type: Rolling
+  paused: false 
+  revisionHistoryLimit: 2 
+  minReadySeconds: 0 

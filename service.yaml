@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: nexus3-svc
+  labels:
+    name: nexus3-svc
+spec:
+  ports:
+    - protocol: TCP
+      port: 8081
+      targetPort: 8081
+  selector:
+    name: nexus3
