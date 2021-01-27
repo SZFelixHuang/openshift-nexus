@@ -7,7 +7,6 @@ metadata:
     app: nexus-persistent
     template: nexus-persistent-template
   name: nexus
-  namespace: devops
 spec:
   accessModes:
     - ReadWriteOnce
