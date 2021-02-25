@@ -29,6 +29,8 @@ spec:
         - name: nexus-data
           persistentVolumeClaim:
             claimName: nexus
+      imagePullSecrets:
+        - name: docker-registry
   replicas: 1
   triggers:
     - type: ConfigChange 
